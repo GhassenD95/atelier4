@@ -43,7 +43,7 @@
                                 {{ book.title }}
                             </th>
                             <td class="px-6 py-4">
-                                {{ book.publicationDate | date('Y-m-d')}}
+                                {{ book.publicationDate | date('F j, Y') }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ book.enabled ? 1 : 0 }}
@@ -61,7 +61,7 @@
                                     <input type="hidden" name="_method" value="DELETE">
                                     <button class="hover:underline" type="submit">delete</button>
                                 </form>
-                                <a class="hover:underline" href="">Show</a>
+                                <a class="hover:underline" href="{{ url('app_book_show', {'id' : book.id}) }}">Show</a>
 
                             </td>
 

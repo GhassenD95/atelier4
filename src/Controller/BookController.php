@@ -198,7 +198,9 @@ class BookController extends AbstractController
     }
 
 
-    public function show($id, EntityManagerInterface $em){
+    #[Route('/book/show/{id}',name: "app_book_show")]
+    public function show($id, EntityManagerInterface $em): RedirectResponse|Response
+    {
         $book = $em->getRepository(Book::class)->find($id);
 
         if(!$book){
@@ -206,7 +208,9 @@ class BookController extends AbstractController
             return $this->redirectToRoute("app_book");
         }
 
-        return $this->render();
+        return $this->render("book/show.html.twig", [
+            'book' => $book
+        ]);
 
     }
 
