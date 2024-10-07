@@ -1,0 +1,5 @@
+![FireShot Capture 075 - Hello BookController! - localhost](https://github.com/user-attachments/assets/fc9b1ceb-7739-4a79-ab8a-f2b4cf3b5ab5)
+![FireShot Capture 079 - Hello AuthorController! - localhost](https://github.com/user-attachments/assets/c4152abc-e300-4698-b2d0-d2090aa5d842)
+![FireShot Capture 078 - Hello AuthorController! - localhost](https://github.com/user-attachments/assets/8157ad33-c888-4825-bb92-266eb52a015e)
+![FireShot Capture 077 - Hello AuthorController! - localhost](https://github.com/user-attachments/assets/14c2305e-3a70-40f2-9a2f-983e8eade875)
+![FireShot Capture 076 - Hello AuthorController! - localhost](https://github.com/user-attachments/assets/4847df61-e0f0-4fce-9422-c65f72845f3d)
