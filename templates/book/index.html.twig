@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BookController!{% endblock %}
+
+{% block body %}
+    <div class="flex flex-col items-center space-y-5">
+        <p class="text-3xl">List Books</p>
+
+
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                        Title
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Publication date
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Published
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Category
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Author
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Actions
+                    </th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+
+                {% if books is not null %}
+
+                    {% for book in books %}
+                        <tr class=" border-b border-gray-200 dark:border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                {{ book.title }}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ book.publicationDate | date('Y-m-d')}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ book.enabled ? 1 : 0 }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ book.category }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ book.author.username }}
+                            </td>
+
+                            <td class="px-6 py-4 flex justify-between w-44">
+                                <a class="hover:underline" href="{{ url('app_book_edit', {'id': book.id}) }}">Edit</a>
+                                <form action="{{ path('app_book_destroy', {'id': book.id}) }}" method="post">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button class="hover:underline" type="submit">delete</button>
+                                </form>
+                                <a class="hover:underline" href="">Show</a>
+
+                            </td>
+
+
+
+                        </tr>
+                    {% endfor %}
+
+                {% else %}
+                    <p>No Books found.</p>
+                {% endif %}
+
+                </tbody>
+            </table>
+
+
+
+
+        </div>
+
+        <div>
+            {% for message in app.flashes('error') %}
+                <p class="font-thick text-red-400">{{ message }}</p>
+            {% endfor %}
+        </div>
+
+        <div>
+            <p>Number of published books: {{ nbr_published }}</p>
+            <p>Number of unpublished books: {{ nbr_unpublished}} </p>
+        </div>
+        <a class="hover:underline" href="{{ url('app_book_create') }}">add Book</a>
+        <a class="hover:underline" href="{{ url('app_authors') }}">List Authors</a>
+    </div>
+{% endblock %}

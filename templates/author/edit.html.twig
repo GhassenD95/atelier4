@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AuthorController!{% endblock %}
+
+{% block body %}
+    <div class="flex flex-col items-center space-y-5">
+        <p class="text-3xl">Add Author</p>
+        <form action="{{ path('app_author_update', { id: author.id })}}" method="post" class="flex flex-col items-start space-y-2">
+            <div class="flex w-72 justify-between">
+                <label class="" for="Username">Username</label>
+                <input class="border border-black" type="text" name="username" id="Username" value="{{ author.username is defined ? author.username : ''  }}">
+            </div>
+            <div class="flex w-72 justify-between">
+                <label for="Email">Email</label>
+                <input value="{{ author.email is defined ? author.email : ''  }}" class="border border-black"  type="text" name="email" id="Email">
+            </div>
+            <input type="hidden" name="_method" value="PUT">
+            <input class="border border-black mt-5 cursor-pointer hover:bg-gray-100"  type="submit" value="Edit">
+        </form>
+
+        {% for message in app.flashes('error') %}
+            <p class="font-thick text-red-400">{{ message }}</p>
+        {% endfor %}
+
+    </div>
+{% endblock %}

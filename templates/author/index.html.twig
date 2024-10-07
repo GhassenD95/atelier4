@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AuthorController!{% endblock %}
+
+{% block body %}
+    <div class="flex flex-col items-center space-y-5">
+        <p class="text-3xl">List authors</p>
+
+
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                        Username
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Email
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Actions
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                {% if authors is not null %}
+
+                    {% for author in authors %}
+                        <tr class="border-b border-gray-200 dark:border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                                {{ author.username }}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ author.email }}
+                            </td>
+                            <td class="px-6 py-4 w-32 flex justify-between ">
+                                <form action="{{ url('app_author_destroy', { id: author.id }) }}" method="post">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button class="hover:underline" type="submit">Delete</button>
+                                </form>
+                                <a class="hover:underline" href="{{ path('app_author_edit', {'id': author.id}) }}">edit</a>
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+
+                {% else %}
+                    <p>No authors found</p>
+                {% endif %}
+
+                </tbody>
+            </table>
+
+            {% for message in app.flashes('error') %}
+                <p class="font-thick text-red-400">{{ message }}</p>
+            {% endfor %}
+        </div>
+        <a class="hover:underline" href="{{ url('app_author_create') }}">add Author</a>
+
+    </div>
+{% endblock %}
